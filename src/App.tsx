@@ -31,13 +31,13 @@ export const App: React.FC = () => {
 
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
-  const handleTitleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(ev.target.value);
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
     setHasTitleError(false);
   };
 
-  const handleUserIdChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
-    setUserId(+ev.target.value);
+  const handleUserIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setUserId(+event.target.value);
     setHasUserError(false);
   };
 
@@ -49,12 +49,7 @@ export const App: React.FC = () => {
     setHasUserError(false);
   };
 
-  const addTodo = (todo: Todo) => {
-    const newTodo = {
-      ...todo,
-      id: getNewTodoId(todos),
-    };
-
+  const addTodo = (newTodo: Todo) => {
     setTodos(currentTodos => [...currentTodos, newTodo]);
   };
 
@@ -82,7 +77,7 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <h1>Add todo form</h1>
-      <form action="/api/todos" method="POST" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="field">
           <label className="label" htmlFor="todo-title">
             Title:
